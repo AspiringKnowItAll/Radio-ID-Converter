@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert Motorola MOTOTRBO Radio IDs and Talkgroup IDs to and from their IP address representation.">
+  <title>Motorola Radio ID / IP Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="converter-card" aria-labelledby="page-title">
+      <header class="page-header">
+        <p class="eyebrow">MOTOTRBO utility</p>
+        <h1 id="page-title">Motorola Radio ID / IP Converter</h1>
+        <p class="lede">Convert Radio IDs and Talkgroup IDs to and from their MOTOTRBO network IP address representation.</p>
+      </header>
+
+      <div class="control-group" aria-labelledby="type-label">
+        <span class="control-label" id="type-label">ID type</span>
+        <div class="segmented" role="radiogroup" aria-labelledby="type-label">
+          <button type="button" class="segment is-active" data-type="radio" role="radio" aria-checked="true">Radio ID</button>
+          <button type="button" class="segment" data-type="talkgroup" role="radio" aria-checked="false">Talkgroup ID</button>
+        </div>
+      </div>
+
+      <div class="control-group" aria-labelledby="direction-label">
+        <span class="control-label" id="direction-label">Direction</span>
+        <div class="segmented" role="radiogroup" aria-labelledby="direction-label">
+          <button type="button" class="segment is-active" data-direction="id-to-ip" role="radio" aria-checked="true">ID → IP</button>
+          <button type="button" class="segment" data-direction="ip-to-id" role="radio" aria-checked="false">IP → ID</button>
+        </div>
+      </div>
+
+      <form id="converter-form" novalidate>
+        <div id="id-input-panel">
+          <div class="field">
+            <label for="id-input" id="id-input-label">Radio ID</label>
+            <input
+              id="id-input"
+              name="id"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              enterkeyhint="done"
+              spellcheck="false"
+              aria-describedby="id-range-note id-error"
+              placeholder="Enter Radio ID">
+            <p class="field-note" id="id-range-note">
+              General MOTOTRBO: 1–16,776,415. Capacity Plus: 1–65,535.
+            </p>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label for="cai-input" id="cai-label">CAI</label>
+              <span class="tooltip-wrap">
+                <button type="button" class="info-button" aria-describedby="cai-tooltip" aria-label="About CAI">?</button>
+                <span class="tooltip" id="cai-tooltip" role="tooltip">
+                  CAI is the first octet of the MOTOTRBO network IP address. The Motorola default for individual Radio IDs is 12. Systems may use a different configured value.
+                </span>
+              </span>
+            </div>
+            <input
+              id="cai-input"
+              name="cai"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              enterkeyhint="done"
+              spellcheck="false"
+              aria-describedby="cai-error"
+              value="12">
+          </div>
+        </div>
+
+        <div id="ip-input-panel" hidden>
+          <div class="field">
+            <label for="ip-input">IP address</label>
+            <input
+              id="ip-input"
+              name="ip"
+              type="text"
+              inputmode="decimal"
+              autocomplete="off"
+              autocapitalize="off"
+              enterkeyhint="done"
+              spellcheck="false"
+              aria-describedby="ip-help ip-error"
+              placeholder="12.0.47.13">
+            <p class="field-note" id="ip-help">Enter the full four-octet address. Commas are accepted and normalized to periods.</p>
+          </div>
+        </div>
+
+        <div class="message error-message" id="id-error" role="alert" hidden></div>
+        <div class="message error-message" id="cai-error" role="alert" hidden></div>
+        <div class="message error-message" id="ip-error" role="alert" hidden></div>
+        <div class="message warning-message" id="capacity-warning" role="status" hidden></div>
+
+        <button class="convert-button" type="submit">Convert</button>
+      </form>
+
+      <section class="result-card" id="result-card" aria-live="polite" hidden>
+        <div class="result-heading-row">
+          <span class="result-heading" id="result-heading">IP address</span>
+          <button type="button" class="copy-button" id="copy-button">Copy</button>
+        </div>
+        <div class="result-value" id="result-value"></div>
+
+        <dl class="result-details" id="result-details" hidden>
+          <div>
+            <dt id="derived-id-label">Radio ID</dt>
+            <dd id="derived-id-value"></dd>
+          </div>
+          <div>
+            <dt id="derived-cai-label">CAI</dt>
+            <dd id="derived-cai-value"></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="about-section" aria-labelledby="about-heading">
+        <h2 id="about-heading">About this conversion</h2>
+        <p>
+          MOTOTRBO represents Radio IDs and Talkgroup IDs as the lower three octets of a network IP address. The first octet is the configured CAI or Group CAI value.
+        </p>
+        <p id="limits-copy">
+          Radio IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Radio IDs are limited to 1–65,535.
+        </p>
+        <p>
+          Default values are CAI 12 for individual Radio IDs and Group CAI 225 for Talkgroup IDs. Systems may be configured differently.
+        </p>
+        <p class="documentation-note">
+          For authoritative configuration details, reserved values, and system-specific limitations, consult official Motorola MOTOTRBO documentation.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
