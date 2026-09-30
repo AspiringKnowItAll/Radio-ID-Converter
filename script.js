@@ -6,7 +6,6 @@ const DEFAULTS = {
     label: "Radio ID",
     caiLabel: "CAI",
     cai: 12,
-    capMax: 65535,
     capNote: "Capacity Plus: 1–65,535.",
     aboutLimit: "Radio IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Radio IDs are limited to 1–65,535.",
     tooltip: "CAI is the first octet of the MOTOTRBO network IP address. The Motorola default for individual Radio IDs is 12. Systems may use a different configured value."
@@ -15,7 +14,6 @@ const DEFAULTS = {
     label: "Talkgroup ID",
     caiLabel: "Group CAI",
     cai: 225,
-    capMax: 254,
     capNote: "Capacity Plus: 1–254. ID 255 is reserved for All Call.",
     aboutLimit: "Talkgroup IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Talkgroup IDs use 1–254; Group ID 255 is reserved for All Call.",
     tooltip: "Group CAI is the first octet of the MOTOTRBO group network IP address. The Motorola default for Talkgroup IDs is 225. Systems may use a different configured value."
@@ -187,29 +185,6 @@ function ipToId(octets) {
   return (octets[1] * 65536) + (octets[2] * 256) + octets[3];
 }
 
-function setCapacityWarning(id) {
-  const config = DEFAULTS[selectedType];
-
-  if (selectedType === "radio" && id > config.capMax) {
-    capacityWarning.textContent = "This Radio ID exceeds the Capacity Plus limit of 65,535.";
-    capacityWarning.hidden = false;
-    return;
-  }
-
-  if (selectedType === "talkgroup") {
-    if (id === 255) {
-      capacityWarning.textContent = "Capacity Plus Group ID 255 is reserved for All Call.";
-      capacityWarning.hidden = false;
-      return;
-    }
-
-    if (id > config.capMax) {
-      capacityWarning.textContent = "This Talkgroup ID exceeds the normal Capacity Plus range of 1–254.";
-      capacityWarning.hidden = false;
-    }
-  }
-}
-
 function showIdToIpResult(id, cai) {
   const ip = idToIp(id, cai);
 
@@ -217,7 +192,6 @@ function showIdToIpResult(id, cai) {
   resultValue.textContent = ip;
   resultDetails.hidden = true;
   resultCard.hidden = false;
-  setCapacityWarning(id);
 }
 
 function showIpToIdResult(parsedIp) {
@@ -244,11 +218,8 @@ function showIpToIdResult(parsedIp) {
   derivedCaiValue.textContent = String(cai);
   resultDetails.hidden = false;
   resultCard.hidden = false;
-  setCapacityWarning(id);
-
   if (cai !== config.cai) {
-    const existing = capacityWarning.hidden ? "" : capacityWarning.textContent + " ";
-    capacityWarning.textContent = existing + config.caiLabel + " " + cai + " differs from the Motorola default of " + config.cai + ".";
+    capacityWarning.textContent = config.caiLabel + " " + cai + " differs from the Motorola default of " + config.cai + ".";
     capacityWarning.hidden = false;
   }
 }
