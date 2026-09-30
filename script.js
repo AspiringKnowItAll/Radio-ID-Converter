@@ -1,12 +1,18 @@
 "use strict";
 
-const MAX_ID = 16776415;
+const NORMAL_MAX_ID = 16776415;
+const CAPMAX_MSI_ALL_CALL_MIN = 16777056;
+const CAPMAX_MSI_ALL_CALL_MAX = 16777183;
+const CAPMAX_SITE_ALL_CALL = 16777213;
+const CAPMAX_MULTI_SITE_ALL_CALL = 16777214;
+const CAPMAX_SYSTEM_WIDE_ALL_CALL = 16777215;
+
 const DEFAULTS = {
   radio: {
     label: "Radio ID",
     caiLabel: "CAI",
     cai: 12,
-    capNote: "Capacity Plus: 1–65,535.",
+    rangeNote: "General MOTOTRBO: 1–16,776,415. Capacity Plus: 1–65,535.",
     aboutLimit: "Radio IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Radio IDs are limited to 1–65,535.",
     tooltip: "CAI is the first octet of the MOTOTRBO network IP address. The Motorola default for individual Radio IDs is 12. Systems may use a different configured value."
   },
@@ -14,8 +20,8 @@ const DEFAULTS = {
     label: "Talkgroup ID",
     caiLabel: "Group CAI",
     cai: 225,
-    capNote: "Capacity Plus: 1–254. ID 255 is reserved for All Call.",
-    aboutLimit: "Talkgroup IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Talkgroup IDs use 1–254; Group ID 255 is reserved for All Call.",
+    rangeNote: "General MOTOTRBO: 1–16,776,415. Capacity Plus: 1–254; 255 is All Call. Capacity Max: 16,777,056–16,777,183 MSI Multi-Site All Call; 16,777,213 Site All Call; 16,777,214 Multi-Site All Call; 16,777,215 System-Wide All Call.",
+    aboutLimit: "Talkgroup IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Talkgroup IDs use 1–254; Group ID 255 is reserved for All Call. Capacity Max additionally reserves 16,777,056–16,777,183 for MSI Multi-Site All Call, 16,777,213 for Site All Call, 16,777,214 for Multi-Site All Call, and 16,777,215 for System-Wide All Call.",
     tooltip: "Group CAI is the first octet of the MOTOTRBO group network IP address. The Motorola default for Talkgroup IDs is 225. Systems may use a different configured value."
   }
 };
@@ -99,7 +105,7 @@ function updateLabelsAndDefaults(resetCai) {
   idInput.placeholder = "Enter " + config.label;
   caiLabel.textContent = config.caiLabel;
   caiTooltip.textContent = config.tooltip;
-  idRangeNote.textContent = "General MOTOTRBO: 1–16,776,415. " + config.capNote;
+  idRangeNote.textContent = config.rangeNote;
   limitsCopy.textContent = config.aboutLimit;
 
   if (resetCai) {
@@ -121,6 +127,16 @@ function updateDirectionUI() {
   }
 }
 
+function isValidTalkgroupId(value) {
+  return (
+    (value >= 1 && value <= NORMAL_MAX_ID) ||
+    (value >= CAPMAX_MSI_ALL_CALL_MIN && value <= CAPMAX_MSI_ALL_CALL_MAX) ||
+    value === CAPMAX_SITE_ALL_CALL ||
+    value === CAPMAX_MULTI_SITE_ALL_CALL ||
+    value === CAPMAX_SYSTEM_WIDE_ALL_CALL
+  );
+}
+
 function parsePositiveId(rawValue) {
   if (rawValue === "") {
     return { error: "Enter an ID to convert." };
@@ -128,8 +144,16 @@ function parsePositiveId(rawValue) {
 
   const value = Number(rawValue);
 
-  if (!Number.isSafeInteger(value) || value < 1 || value > MAX_ID) {
-    return { error: "ID must be between 1 and 16,776,415." };
+  if (!Number.isSafeInteger(value) || value < 1) {
+    return { error: "Enter a valid positive integer ID." };
+  }
+
+  if (selectedType === "radio" && value > NORMAL_MAX_ID) {
+    return { error: "Radio ID must be between 1 and 16,776,415." };
+  }
+
+  if (selectedType === "talkgroup" && !isValidTalkgroupId(value)) {
+    return { error: "Talkgroup ID is outside the valid general range and documented Capacity Max special All Call ranges." };
   }
 
   return { value: value };
@@ -204,8 +228,13 @@ function showIpToIdResult(parsedIp) {
     return;
   }
 
-  if (id > MAX_ID) {
-    showError(ipError, ipInput, "This IP address maps to a reserved ID range above 16,776,415.");
+  if (selectedType === "radio" && id > NORMAL_MAX_ID) {
+    showError(ipError, ipInput, "This IP address maps to a reserved Radio ID range above 16,776,415.");
+    return;
+  }
+
+  if (selectedType === "talkgroup" && !isValidTalkgroupId(id)) {
+    showError(ipError, ipInput, "This IP address maps to a reserved or unsupported Talkgroup ID.");
     return;
   }
 
