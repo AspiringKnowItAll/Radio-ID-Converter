@@ -10,7 +10,7 @@ A lightweight, client-side web utility for converting Motorola MOTOTRBO Radio ID
 - ID → IP and IP → ID conversion
 - Editable CAI / Group CAI for ID → IP conversion
 - Derived CAI / Group CAI for IP → ID conversion
-- Capacity Plus range warnings
+- Capacity Plus and Capacity Max range guidance
 - Mobile-oriented numeric input hints
 - GitHub Pages compatible
 
@@ -21,5 +21,9 @@ A lightweight, client-side web utility for converting Motorola MOTOTRBO Radio ID
 - General MOTOTRBO Talkgroup ID: 1–16,776,415
 - Capacity Plus Talkgroup ID: 1–254
 - Capacity Plus Group ID 255 is reserved for All Call
+- Capacity Max MSI Multi-Site All Call: 16,777,056–16,777,183
+- Capacity Max Site All Call: 16,777,213
+- Capacity Max Multi-Site All Call: 16,777,214
+- Capacity Max System-Wide All Call: 16,777,215
 
 For authoritative configuration details and system-specific limitations, consult official Motorola MOTOTRBO documentation.
