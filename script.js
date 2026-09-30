@@ -25,7 +25,7 @@ const DEFAULTS = {
     label: "Talkgroup ID",
     caiLabel: "Group CAI",
     cai: 225,
-    rangeNote: "General MOTOTRBO: 1–16,776,415. Capacity Plus: 1–254; 255 is All Call. Capacity Max: 16,777,056–16,777,183 MSI Multi-Site All Call; 16,777,213 Site All Call; 16,777,214 Multi-Site All Call; 16,777,215 System-Wide All Call.",
+    rangeNote: "General MOTOTRBO: 1–16,776,415.\nCapacity Plus: 1–254; 255 is All Call.\nCapacity Max MSI Multi-Site All Call: 16,777,056–16,777,183.\nCapacity Max Site All Call: 16,777,213.\nCapacity Max Multi-Site All Call: 16,777,214.\nCapacity Max System-Wide All Call: 16,777,215.",
     aboutLimit: "Talkgroup IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Talkgroup IDs use 1–254; Group ID 255 is reserved for All Call. Capacity Max additionally reserves 16,777,056–16,777,183 for MSI Multi-Site All Call, 16,777,213 for Site All Call, 16,777,214 for Multi-Site All Call, and 16,777,215 for System-Wide All Call.",
     tooltip: "Group CAI is the first octet of the MOTOTRBO group network IP address. The Motorola default for Talkgroup IDs is 225. Systems may use a different configured value."
   }
