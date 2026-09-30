@@ -17,8 +17,7 @@ const DEFAULTS = {
     label: "Radio ID",
     caiLabel: "CAI",
     cai: 12,
-    rangeNote: "General MOTOTRBO: 1–16,776,415. Capacity Plus: 1–65,535.",
-    aboutLimit: "Radio IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Radio IDs are limited to 1–65,535.",
+    aboutLimit: "General MOTOTRBO Radio IDs: 1–16,776,415.\nCapacity Plus Radio IDs: 1–65,535.",
     tooltip: "CAI is the first octet of the MOTOTRBO network IP address. The Motorola default for individual Radio IDs is 12. Systems may use a different configured value."
   },
   talkgroup: {
@@ -26,7 +25,7 @@ const DEFAULTS = {
     caiLabel: "Group CAI",
     cai: 225,
     rangeNote: "General MOTOTRBO: 1–16,776,415.\nCapacity Plus: 1–254; 255 is All Call.\nCapacity Max MSI Multi-Site All Call: 16,777,056–16,777,183.\nCapacity Max Site All Call: 16,777,213.\nCapacity Max Multi-Site All Call: 16,777,214.\nCapacity Max System-Wide All Call: 16,777,215.",
-    aboutLimit: "Talkgroup IDs use the range 1–16,776,415 on general MOTOTRBO systems. Capacity Plus Talkgroup IDs use 1–254; Group ID 255 is reserved for All Call. Capacity Max additionally reserves 16,777,056–16,777,183 for MSI Multi-Site All Call, 16,777,213 for Site All Call, 16,777,214 for Multi-Site All Call, and 16,777,215 for System-Wide All Call.",
+    aboutLimit: "General MOTOTRBO Talkgroup IDs: 1–16,776,415.\nCapacity Plus Talkgroup IDs: 1–254.\nCapacity Plus All Call: 255.\nCapacity Max MSI Multi-Site All Call: 16,777,056–16,777,183.\nCapacity Max Site All Call: 16,777,213.\nCapacity Max Multi-Site All Call: 16,777,214.\nCapacity Max System-Wide All Call: 16,777,215.",
     tooltip: "Group CAI is the first octet of the MOTOTRBO group network IP address. The Motorola default for Talkgroup IDs is 225. Systems may use a different configured value."
   }
 };
@@ -45,7 +44,6 @@ const ipInput = document.getElementById("ip-input");
 const idInputLabel = document.getElementById("id-input-label");
 const caiLabel = document.getElementById("cai-label");
 const caiTooltip = document.getElementById("cai-tooltip");
-const idRangeNote = document.getElementById("id-range-note");
 const limitsCopy = document.getElementById("limits-copy");
 const idError = document.getElementById("id-error");
 const caiError = document.getElementById("cai-error");
@@ -110,7 +108,6 @@ function updateLabelsAndDefaults(resetCai) {
   idInput.placeholder = "Enter " + config.label;
   caiLabel.textContent = config.caiLabel;
   caiTooltip.textContent = config.tooltip;
-  idRangeNote.textContent = config.rangeNote;
   limitsCopy.textContent = config.aboutLimit;
 
   if (resetCai) {
