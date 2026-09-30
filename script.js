@@ -1,3 +1,8 @@
+/*
+  Site implementation generated with OpenAI ChatGPT based on
+  requirements, review, and approval by the project owner.
+*/
+
 "use strict";
 
 const NORMAL_MAX_ID = 16776415;
