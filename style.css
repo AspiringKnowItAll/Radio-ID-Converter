@@ -412,3 +412,7 @@ input[aria-invalid="true"] {
     --shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
   }
 }
+
+#id-range-note {
+  white-space: pre-line;
+}
