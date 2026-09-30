@@ -27,3 +27,8 @@ A lightweight, client-side web utility for converting Motorola MOTOTRBO Radio ID
 - Capacity Max System-Wide All Call: 16,777,215
 
 For authoritative configuration details and system-specific limitations, consult official Motorola MOTOTRBO documentation.
+
+
+## Transparency
+
+This website and repository were written entirely through OpenAI's ChatGPT, including the HTML, CSS, JavaScript, documentation, and repository edits. The project owner defined the requirements, reviewed the behavior, and approved changes; ChatGPT generated and applied the implementation.
