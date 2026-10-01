@@ -17,7 +17,7 @@ const DEFAULTS = {
     label: "Radio ID",
     caiLabel: "CAI",
     cai: 12,
-    aboutLimit: "General MOTOTRBO Radio IDs: 1–16,776,415.\nCapacity Plus Radio IDs: 1–65,535.",
+    aboutLimit: "Standard Range: 1–16,776,415.\nCapacity Plus Systems: 1–65,535.",
     tooltip: "CAI is the first octet of the MOTOTRBO network IP address. The Motorola default for individual Radio IDs is 12. Systems may use a different configured value."
   },
   talkgroup: {
@@ -25,7 +25,7 @@ const DEFAULTS = {
     caiLabel: "Group CAI",
     cai: 225,
     rangeNote: "General MOTOTRBO: 1–16,776,415.\nCapacity Plus: 1–254; 255 is All Call.\nCapacity Max MSI Multi-Site All Call: 16,777,056–16,777,183.\nCapacity Max Site All Call: 16,777,213.\nCapacity Max Multi-Site All Call: 16,777,214.\nCapacity Max System-Wide All Call: 16,777,215.",
-    aboutLimit: "General MOTOTRBO Talkgroup IDs: 1–16,776,415.\nCapacity Plus Talkgroup IDs: 1–254.\nCapacity Plus All Call: 255.\nCapacity Max MSI Multi-Site All Call: 16,777,056–16,777,183.\nCapacity Max Site All Call: 16,777,213.\nCapacity Max Multi-Site All Call: 16,777,214.\nCapacity Max System-Wide All Call: 16,777,215.",
+    aboutLimit: "Standard Range: 1–16,776,415.\nCapacity Plus Systems: 1–254; 255 is All Call.\nIDs reserved for All Calls: 16,777,056–16,777,183 and 16,777,213–16,777,215.",
     tooltip: "Group CAI is the first octet of the MOTOTRBO group network IP address. The Motorola default for Talkgroup IDs is 225. Systems may use a different configured value."
   }
 };
