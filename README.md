@@ -1,6 +1,6 @@
 # Radio ID Converter
 
-A lightweight, client-side web utility for converting Motorola MOTOTRBO Radio IDs and Talkgroup IDs to and from their network IP address representation.
+A lightweight, client-side web utility for converting Motorola MOTOTRBO™ Radio IDs and Talkgroup IDs to and from their network IP address representation.
 
 **Live site:** https://radioidconverter.net/
 
@@ -54,6 +54,10 @@ The site is hosted with GitHub Pages and published at https://radioidconverter.n
 ## Transparency
 
 This website and repository were generated and maintained through OpenAI ChatGPT, including the HTML, CSS, JavaScript, documentation, and repository edits. The project owner defined the requirements, reviewed the behavior, and approved the implementation and changes.
+
+## Trademark and affiliation
+
+MOTOTRBO™ is a trademark of Motorola Trademark Holdings, LLC. This is an independent, unofficial utility and is not affiliated with, sponsored by, or endorsed by Motorola Solutions.
 
 ## License
 
