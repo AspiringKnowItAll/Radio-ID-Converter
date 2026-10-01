@@ -45,7 +45,7 @@ The conversion runs entirely in the browser. No entered IDs or IP addresses are 
 - `index.html` — page structure and interface
 - `style.css` — responsive layout, styling, and dark mode
 - `script.js` — conversion logic, validation, and UI behavior
-- `LICENSE` — MIT license
+- `LICENSE` — BSD Zero Clause (0BSD) license
 
 ## Hosting
 
@@ -57,4 +57,4 @@ This website and repository were generated and maintained through OpenAI ChatGPT
 
 ## License
 
-This project is licensed under the MIT License. See `LICENSE` for the full terms.
+This project is licensed under the BSD Zero Clause (0BSD) License. It may be used, copied, modified, and distributed for any purpose without an attribution requirement. See `LICENSE` for the full terms.
