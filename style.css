@@ -416,3 +416,31 @@ input[aria-invalid="true"] {
 #limits-copy {
   white-space: pre-line;
 }
+
+.site-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.github-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.github-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
