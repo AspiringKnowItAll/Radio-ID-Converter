@@ -242,9 +242,9 @@ function showIpToIdResult(parsedIp) {
 
   ipInput.value = parsedIp.normalized;
   resultHeading.textContent = config.label;
-  resultValue.textContent = id.toLocaleString("en-US");
+  resultValue.textContent = String(id);
   derivedIdLabel.textContent = config.label;
-  derivedIdValue.textContent = id.toLocaleString("en-US");
+  derivedIdValue.textContent = String(id);
   derivedCaiLabel.textContent = config.caiLabel;
   derivedCaiValue.textContent = String(cai);
   resultDetails.hidden = false;
